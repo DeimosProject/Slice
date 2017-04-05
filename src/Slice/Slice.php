@@ -46,6 +46,27 @@ class Slice extends Iterator implements \ArrayAccess
     }
 
     /**
+     * @return \Generator
+     * @throws \Deimos\Helper\Exceptions\ExceptionEmpty
+     */
+    public function asGenerator()
+    {
+        foreach ($this->storage as $key => $object)
+        {
+            yield $key => $this->getSlice($key);
+        }
+    }
+
+    /**
+     * @return Slice[]
+     * @throws \Deimos\Helper\Exceptions\ExceptionEmpty
+     */
+    public function asObject()
+    {
+        return iterator_to_array($this->asGenerator());
+    }
+
+    /**
      * @return array
      */
     public function asArray()
