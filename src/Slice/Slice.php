@@ -46,7 +46,7 @@ class Slice extends Iterator implements \ArrayAccess
     }
 
     /**
-     * @return \Generator
+     * @return \Generator|Slice[]
      * @throws \Deimos\Helper\Exceptions\ExceptionEmpty
      */
     public function asGenerator()
