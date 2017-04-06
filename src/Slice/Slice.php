@@ -126,7 +126,7 @@ class Slice extends Iterator implements \ArrayAccess
     /**
      * @param array $storage
      *
-     * @return static
+     * @return Slice
      */
     public function make(array $storage)
     {
