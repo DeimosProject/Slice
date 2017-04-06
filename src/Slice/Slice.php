@@ -103,6 +103,17 @@ class Slice extends Iterator implements \ArrayAccess
 
     /**
      * @param string $path
+     * @param mixed  $default
+     *
+     * @return mixed
+     */
+    public function atData($path, $default = null)
+    {
+        return $this->storage[$path] ?? $default;
+    }
+
+    /**
+     * @param string $path
      *
      * @return mixed
      * @throws \Deimos\Helper\Exceptions\ExceptionEmpty
