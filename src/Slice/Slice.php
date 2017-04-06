@@ -53,7 +53,7 @@ class Slice extends Iterator implements \ArrayAccess
     {
         foreach ($this->storage as $key => $object)
         {
-            yield $key => $this->getSlice($key);
+            yield $key => $this->make($object);
         }
     }
 
