@@ -216,7 +216,7 @@ class Slice extends Iterator implements \ArrayAccess
         }
         else
         {
-            $path = explode('.', $offset);
+            $path = $this->helper->arr()->keys($offset);
             $last = array_pop($path);
             $row  = &$this->storage;
 
@@ -234,7 +234,7 @@ class Slice extends Iterator implements \ArrayAccess
      */
     public function offsetUnset($offset)
     {
-        $path = explode('.', $offset);
+        $path = $this->helper->arr()->keys($offset);
         $last = array_pop($path);
         $row  = &$this->storage;
 
