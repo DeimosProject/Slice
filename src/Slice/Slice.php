@@ -124,6 +124,16 @@ class Slice extends Iterator implements \ArrayAccess
     }
 
     /**
+     * @param array $storage
+     *
+     * @return static
+     */
+    public function make(array $storage)
+    {
+        return (clone $this)->setData($storage);
+    }
+    
+    /**
      * @param string $path
      *
      * @return Slice
@@ -131,8 +141,7 @@ class Slice extends Iterator implements \ArrayAccess
      */
     public function getSlice($path)
     {
-        return (clone  $this)
-            ->setData($this->getRequired($path));
+        return $this->make($this->getRequired($path));
     }
 
     /**
