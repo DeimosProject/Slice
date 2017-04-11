@@ -94,11 +94,7 @@ class Slice extends Iterator implements \ArrayAccess
      */
     public function getData($path, $default = null)
     {
-        return $this->helper->arr()->get(
-            $this->storage,
-            $path,
-            $default
-        );
+        return $this->helper->arr()->get($this->storage, $path, $default);
     }
 
     /**
@@ -213,20 +209,11 @@ class Slice extends Iterator implements \ArrayAccess
         if (null === $offset)
         {
             $this->storage[] = $value;
-        }
-        else
-        {
-            $path = $this->helper->arr()->keys($offset);
-            $last = array_pop($path);
-            $row  = &$this->storage;
 
-            foreach ($path as $iterator)
-            {
-                $row = &$row[$iterator];
-            }
-
-            $row[$last] = $value;
+            return;
         }
+
+        $this->helper->arr()->set($this->storage, $offset, $value);
     }
 
     /**
@@ -234,16 +221,7 @@ class Slice extends Iterator implements \ArrayAccess
      */
     public function offsetUnset($offset)
     {
-        $path = $this->helper->arr()->keys($offset);
-        $last = array_pop($path);
-        $row  = &$this->storage;
-
-        foreach ($path as $iterator)
-        {
-            $row = &$row[$iterator];
-        }
-
-        unset($row[$last]);
+        $this->helper->arr()->remove($this->storage, $offset);
     }
 
     /**
