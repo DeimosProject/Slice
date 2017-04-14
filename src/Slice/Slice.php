@@ -37,7 +37,7 @@ class Slice extends Iterator implements \ArrayAccess
 
         array_walk_recursive($this->storage, function (&$value) use ($slice)
         {
-            if ($value{0} === '%' && $value{strlen($value) - 1} === '%')
+            if (!is_object($value) && $value{0} === '%' && $value{strlen($value) - 1} === '%')
             {
                 $path  = substr($value, 1, -1);
                 $value = $slice->getData($path);
